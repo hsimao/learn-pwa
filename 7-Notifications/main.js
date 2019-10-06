@@ -6,9 +6,6 @@ if (window.Notification) {
   // 2.) denied 拒絕
   // 3.) default 使用用戶自訂在瀏覽器上的預設值
 
-  function showNotification() {
-    console.log('新的通知！')
-  }
   // 如果允許, 直接調用顯示通知方法
   if (Notification.permission === 'granted') {
     showNotification()
@@ -22,5 +19,19 @@ if (window.Notification) {
         showNotification()
       }
     })
+  }
+
+  function showNotification() {
+    const options = {
+      body: '王小明發送了一則留言給您',
+      icon: '/icon.png',
+    }
+
+    const n = new Notification('您有一則新的通知', options)
+
+    // 監聽通知被點擊事件
+    n.onclick = () => {
+      console.log('通知已被點擊')
+    }
   }
 }
